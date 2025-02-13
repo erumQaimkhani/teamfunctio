@@ -1,55 +1,60 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 
-import Pay from '../components/pay';
-import Footer from '../components/footer';
-import Billing from '../components/billing'; // Assuming Billing component is correctly imported
-import Gettouch from '../components/gettouch';
+"use client";
+import React, { useState } from "react";
+import Pay from "../components/pay";
+import Footer from "../components/footer";
+import Billing from "../components/billing";
 
-export default function Checkout() {
-    return (
-        <header className="relative bg-gray-100 h-[316px]">
-            {/* Background Image */}
-            <div className="absolute inset-0">
-                <Image
-                    src="/images/shop.png"
-                    alt="Background"
-                    layout="fill"
-                    objectFit="cover"
-                    className="w-full h-full"
-                />
+function GetTouch() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 py-12 text-center flex items-center justify-center">
+      <div className="max-w-4xl mx-auto bg-white bg-opacity-20 backdrop-blur-lg shadow-2xl rounded-3xl p-8">
+        <h2 className="text-4xl font-extrabold text-white drop-shadow-md">Get in Touch</h2>
+        <p className="text-lg text-white mt-4 opacity-90">
+          For more information about our products and services, feel free to drop us an email.
+          Our staff is always here to assist you. Do not hesitate to reach out!
+        </p>
+
+        <div className="w-full flex justify-center mt-8">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="w-48 h-12 bg-indigo-700 text-white font-semibold rounded-xl shadow-lg transform transition duration-300 hover:scale-105 hover:bg-indigo-800"
+          >
+            Checkout
+          </button>
+        </div>
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-xl w-96">
+              <h3 className="text-xl font-semibold mb-4">Checkout</h3>
+              <p className="text-gray-700">Proceed with your checkout process.</p>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="mt-4 w-full bg-indigo-700 text-white py-2 rounded-lg hover:bg-indigo-800"
+              >
+                Close
+              </button>
             </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
-            {/* Centered Content */}
-            <div className="relative flex flex-col items-center justify-center h-full text-center text-white">
-                {/* Shop Logo */}
-                <Image
-                    src="/images/meubl.png"
-                    alt="Logo"
-                    width={77}
-                    height={77}
-                    className="h-[77px] w-[77px] object-contain"
-                />
-
-                {/* Shop Title */}
-                <h1 className="text-4xl font-bold mt-4">Contact</h1>
-
-                {/* Breadcrumb Navigation */}
-                <nav className="flex items-center space-x-2 mt-2 text-sm">
-                    <Link href="/" className="hover:underline">
-                        Home
-                    </Link>
-                    <span>&gt;</span>
-                    <Link href="/components" className="hover:underline">
-                        Contact
-                    </Link>
-                </nav>
-            </div>
-<Gettouch />
-        <Pay />
+export default function Contact() {
+  return (
+    <>
+      <main>
         <Billing />
-        <Footer /> 
-        </header>
-    );
+        <Pay />
+        <GetTouch />
+      </main>
+      <Footer />
+    </>
+  );
 }
