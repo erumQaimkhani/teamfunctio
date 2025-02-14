@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import Pay from "../components/pay";
 import Footer from "../components/footer";
 import Billing from "../components/billing";
-
+import Headers from "../components/headers";
 function GetTouch() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 py-12 text-center flex items-center justify-center">
+      <Headers />
       <div className="max-w-4xl mx-auto bg-white bg-opacity-20 backdrop-blur-lg shadow-2xl rounded-3xl p-8">
         <h2 className="text-4xl font-extrabold text-white drop-shadow-md">Get in Touch</h2>
         <p className="text-lg text-white mt-4 opacity-90">
